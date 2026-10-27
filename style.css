@@ -990,3 +990,64 @@ body {
         min-height: 46px;
     }
 }
+
+/* Fix task cards on mobile screens */
+@media (max-width: 576px) {
+    .task-item {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .task-item>* {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .task-item .task-text,
+    .task-item .task-title {
+        flex: 1 1 150px;
+        width: auto;
+        min-width: 0;
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+
+    .task-item button {
+        flex-shrink: 0;
+    }
+}
+
+/* Fix task name wrapping on mobile */
+@media (max-width: 576px) {
+    #taskList .list-group-item {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+    }
+
+    #taskList .list-group-item .flex-grow-1 {
+        flex: 1 1 150px;
+        min-width: 150px;
+        width: auto;
+        overflow-wrap: break-word;
+        word-break: normal;
+        line-height: 1.5;
+    }
+
+    #taskList .list-group-item small {
+        max-width: 100%;
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+
+    #taskList .list-group-item .btn {
+        flex-shrink: 0;
+    }
+}
