@@ -1,0 +1,992 @@
+/* =========================
+   1. Global Design
+========================= */
+
+:root {
+    --app-bg: #f3f6fc;
+    --surface: #ffffff;
+    --surface-hover: #f7f9ff;
+    --text-main: #1e293b;
+    --text-muted: #718096;
+    --border-color: #e2e8f0;
+    --primary: #4361ee;
+    --primary-hover: #304bd6;
+    --shadow: 0 12px 35px rgba(30, 41, 59, 0.07);
+}
+
+body {
+    min-height: 100vh;
+    background: var(--app-bg);
+    color: var(--text-main);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.container {
+    max-width: 850px;
+}
+
+h1 {
+    color: var(--text-main);
+    font-weight: 800;
+    letter-spacing: -1.2px;
+}
+
+h2,
+h5 {
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* =========================
+   2. Main Card & Cards
+========================= */
+
+.container>.card {
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.card {
+    background: var(--surface);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+}
+
+.card-body {
+    padding: 28px;
+}
+
+.card h3 {
+    color: var(--primary);
+    font-weight: 800;
+}
+
+/* =========================
+   3. Inputs & Selects
+========================= */
+
+.form-control,
+.form-select {
+    min-height: 44px;
+    color: var(--text-main);
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 10px !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control::placeholder {
+    color: #9aa5b5;
+}
+
+.form-control:focus,
+.form-select:focus {
+    color: var(--text-main);
+    background-color: var(--surface);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.14);
+}
+
+/* =========================
+   4. Buttons
+========================= */
+
+.btn {
+    border-radius: 9px;
+    font-weight: 600;
+    transition: background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.btn-danger {
+    background-color: #e34d59;
+    border-color: #e34d59;
+}
+
+.btn-danger:hover {
+    background-color: #c93643;
+    border-color: #c93643;
+}
+
+/* =========================
+   5. Progress Bars
+========================= */
+
+.progress {
+    height: 9px;
+    overflow: hidden;
+    background-color: var(--border-color);
+    border-radius: 20px;
+}
+
+.progress-bar {
+    border-radius: 20px;
+    transition: width 0.35s ease;
+}
+
+#progressText {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* =========================
+   6. Task List
+========================= */
+
+#taskList {
+    gap: 10px;
+}
+
+#taskList .list-group-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    color: var(--text-main);
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px !important;
+    overflow-wrap: anywhere;
+    transition: background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+#taskList .list-group-item:hover {
+    background: var(--surface-hover);
+    border-color: #cbd5e1;
+}
+
+#taskList .completed {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    opacity: 0.75;
+}
+
+.form-check-input {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: #16a36a;
+    border-color: #16a36a;
+}
+
+/* Priority and category badges */
+
+#taskList .badge {
+    font-size: 11px;
+    padding: 6px 8px;
+    border-radius: 7px;
+    white-space: nowrap;
+}
+
+/* =========================
+   7. Empty Message
+========================= */
+
+#emptyMessage {
+    padding: 16px 0;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* =========================
+   8. Dark Mode
+========================= */
+
+body.dark-mode {
+    --app-bg: #111827;
+    --surface: #1f2937;
+    --surface-hover: #273449;
+    --text-main: #f1f5f9;
+    --text-muted: #a8b4c5;
+    --border-color: #374151;
+    --shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+
+    color-scheme: dark;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h5 {
+    color: var(--text-main);
+}
+
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+    color: var(--text-main);
+    background-color: var(--surface);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #9ca3af;
+}
+
+body.dark-mode .form-control:focus,
+body.dark-mode .form-select:focus {
+    background-color: var(--surface);
+    color: var(--text-main);
+}
+
+body.dark-mode #taskList .list-group-item:hover {
+    border-color: #526078;
+}
+
+body.dark-mode .btn-outline-danger {
+    color: #ff8585;
+    border-color: #e34d59;
+}
+
+body.dark-mode .btn-outline-danger:hover {
+    color: #ffffff;
+    background-color: #c93643;
+}
+
+/* =========================
+   9. Responsive Design
+========================= */
+
+@media (max-width: 576px) {
+    .container.py-5 {
+        padding-top: 28px !important;
+        padding-bottom: 28px !important;
+    }
+
+    h1 {
+        font-size: 29px;
+    }
+
+    .card-body {
+        padding: 17px;
+    }
+
+    #taskList .list-group-item {
+        padding: 11px;
+        gap: 8px;
+    }
+
+    #taskList .btn {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+/* =========================
+   10. Statistics Cards
+========================= */
+
+.row.g-2.mb-4>.col-6>.card {
+    height: 100%;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.row.g-2.mb-4>.col-6>.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(30, 41, 59, 0.08);
+}
+
+.row.g-2.mb-4>.col-6>.card h3 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.row.g-2.mb-4>.col-6>.card small {
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Overdue counter */
+
+#overdueTasks {
+    color: #e34d59 !important;
+}
+
+/* Dark mode */
+
+body.dark-mode .row.g-2.mb-4>.col-6>.card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   11. Task Details
+========================= */
+
+#taskList .list-group-item small {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#taskList .list-group-item .btn-warning {
+    color: #263247;
+    background-color: #fbbf24;
+    border-color: #fbbf24;
+}
+
+#taskList .list-group-item .btn-warning:hover {
+    background-color: #f59e0b;
+    border-color: #f59e0b;
+}
+
+#taskList .list-group-item .btn-danger,
+#taskList .list-group-item .btn-warning {
+    flex-shrink: 0;
+}
+
+#taskList .list-group-item .flex-grow-1 {
+    min-width: 100px;
+    line-height: 1.5;
+}
+
+/* Keyboard accessibility */
+
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* =========================
+   12. Main Heading
+========================= */
+
+h1 {
+    color: var(--text-main);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+h1 i,
+h1 .bi {
+    color: var(--primary);
+}
+
+/* =========================
+   13. Dark Mode Button
+========================= */
+
+#darkModeToggle {
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+#darkModeToggle:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================
+   14. Form Fields
+========================= */
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    transition: border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
+}
+
+/* Placeholder */
+
+.form-control::placeholder {
+    color: #9ca3af;
+    opacity: 1;
+}
+
+/* Dark mode form fields */
+
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+    background-color: var(--surface);
+    color: var(--text-main);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #9ca3af;
+}
+
+body.dark-mode .form-control:focus,
+body.dark-mode .form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+}
+
+/* =========================
+   15. Professional Task Items
+========================= */
+
+#taskList .list-group-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--surface);
+    transition: transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+#taskList .list-group-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(15, 23, 42, 0.07);
+    border-color: var(--primary);
+}
+
+/* Task text */
+
+#taskList .list-group-item .flex-grow-1 {
+    overflow-wrap: anywhere;
+}
+
+#taskList .list-group-item strong {
+    color: var(--text-main);
+    font-size: 15px;
+}
+
+/* Task action buttons */
+
+#taskList .list-group-item .btn {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+#taskList .list-group-item .btn:hover {
+    transform: translateY(-1px);
+}
+
+#taskList .list-group-item .btn:active {
+    transform: scale(0.97);
+}
+
+/* Completed tasks */
+
+#taskList .list-group-item:has(input[type="checkbox"]:checked) {
+    opacity: 0.75;
+}
+
+#taskList .list-group-item:has(input[type="checkbox"]:checked) strong {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+/* Dark mode task items */
+
+body.dark-mode #taskList .list-group-item:hover {
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile layout */
+
+@media (max-width: 576px) {
+    #taskList .list-group-item {
+        padding: 12px;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    #taskList .list-group-item .flex-grow-1 {
+        min-width: 0;
+        flex: 1;
+    }
+
+    #taskList .list-group-item .btn {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+}
+
+/* =========================
+   16. Priority Badges
+========================= */
+
+#taskList .badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    vertical-align: middle;
+}
+
+/* High priority */
+
+#taskList .badge.bg-danger {
+    background-color: #fee2e2 !important;
+    color: #b91c1c !important;
+}
+
+/* Medium priority */
+
+#taskList .badge.bg-warning {
+    background-color: #fef3c7 !important;
+    color: #92400e !important;
+}
+
+/* Low priority */
+
+#taskList .badge.bg-success {
+    background-color: #dcfce7 !important;
+    color: #166534 !important;
+}
+
+/* Category and priority spacing */
+
+#taskList .badge+.badge {
+    margin-left: 5px;
+}
+
+/* Dark mode badges */
+
+body.dark-mode #taskList .badge.bg-danger {
+    background-color: #7f1d1d !important;
+    color: #fecaca !important;
+}
+
+body.dark-mode #taskList .badge.bg-warning {
+    background-color: #78350f !important;
+    color: #fde68a !important;
+}
+
+body.dark-mode #taskList .badge.bg-success {
+    background-color: #14532d !important;
+    color: #bbf7d0 !important;
+}
+
+/* =========================
+   17. Task Metadata
+========================= */
+
+#taskList .list-group-item small {
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+#taskList .list-group-item .badge {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+/* =========================
+   18. Priority Hover Effects
+========================= */
+
+#taskList .badge.bg-danger,
+#taskList .badge.bg-warning,
+#taskList .badge.bg-success {
+    transition: filter 0.2s ease;
+}
+
+#taskList .badge.bg-danger:hover,
+#taskList .badge.bg-warning:hover,
+#taskList .badge.bg-success:hover {
+    filter: brightness(0.96);
+}
+
+/* =========================
+   19. Progress Bars
+========================= */
+
+.progress {
+    height: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+    background-color: #e5e7eb;
+}
+
+.progress-bar {
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}
+
+/* Progress bar colors */
+
+.progress-bar.bg-success {
+    background-color: #22c55e !important;
+}
+
+.progress-bar.bg-warning {
+    background-color: #f59e0b !important;
+}
+
+.progress-bar.bg-danger {
+    background-color: #ef4444 !important;
+}
+
+.progress-bar.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+/* Dark mode progress bars */
+
+body.dark-mode .progress {
+    background-color: #374151;
+}
+
+/* =========================
+   20. Statistics Cards
+========================= */
+
+.row.g-2.mb-4>.col-6>.card {
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.row.g-2.mb-4>.col-6>.card h3 {
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 800;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+.row.g-2.mb-4>.col-6>.card small {
+    display: inline-block;
+    line-height: 1.5;
+}
+
+/* =========================
+   21. Progress Labels
+========================= */
+
+.progress+small,
+.progress+.small {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* Accessibility: reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .progress-bar,
+    .row.g-2.mb-4>.col-6>.card,
+    #taskList .list-group-item {
+        transition: none !important;
+    }
+}
+
+/* =========================
+   22. Responsive Design
+========================= */
+
+/* Tablets and smaller laptops */
+
+@media (max-width: 768px) {
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .card {
+        border-radius: 12px;
+    }
+
+    #taskList .list-group-item {
+        padding: 12px;
+        gap: 10px;
+    }
+}
+
+/* Mobile phones */
+
+@media (max-width: 576px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    h1 {
+        font-size: 23px;
+        letter-spacing: -0.3px;
+    }
+
+    h2,
+    h3 {
+        overflow-wrap: anywhere;
+    }
+
+    /* Form fields */
+
+    .form-control,
+    .form-select,
+    .form-control-lg,
+    .form-select-lg {
+        font-size: 16px;
+    }
+
+    /* Buttons */
+
+    .btn {
+        max-width: 100%;
+        white-space: normal;
+    }
+
+    /* Task list */
+
+    #taskList .list-group-item {
+        align-items: flex-start;
+        padding: 12px;
+    }
+
+    #taskList .list-group-item .flex-grow-1 {
+        overflow-wrap: anywhere;
+    }
+
+    /* Task action buttons */
+
+    #taskList .list-group-item .btn {
+        min-height: 32px;
+    }
+
+    /* Statistics */
+
+    .row.g-2.mb-4>.col-6>.card {
+        padding: 10px !important;
+    }
+
+    .row.g-2.mb-4>.col-6>.card h3 {
+        font-size: 22px;
+    }
+
+    .row.g-2.mb-4>.col-6>.card small {
+        font-size: 11px;
+    }
+
+    /* Progress bars */
+
+    .progress {
+        height: 8px;
+    }
+}
+
+/* Very small screens */
+
+@media (max-width: 360px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    #taskList .list-group-item {
+        padding: 9px;
+        gap: 7px;
+    }
+
+    #taskList .list-group-item .btn {
+        font-size: 11px;
+        padding: 4px 6px;
+    }
+}
+
+/* =========================
+   23. Final Polish
+========================= */
+
+/* Smooth page appearance */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Consistent buttons */
+
+.btn {
+    border-radius: 9px;
+    font-weight: 600;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background-color 0.15s ease;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Clear keyboard focus */
+
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible,
+.form-check-input:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+/* Alerts and feedback messages */
+
+.alert {
+    border: 0;
+    border-radius: 12px;
+    line-height: 1.6;
+}
+
+/* Cards */
+
+.card {
+    transition:
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+/* Task list spacing */
+
+#taskList {
+    padding-left: 0;
+}
+
+/* Make long task names wrap safely */
+
+#taskList .list-group-item,
+#taskList .list-group-item * {
+    overflow-wrap: anywhere;
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Task tools - clean and consistent layout */
+
+.task-tools {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.task-tools .btn,
+.task-tools .file-picker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    min-height: 48px;
+    margin: 0;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-tools .btn:hover,
+.task-tools .file-picker:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.10);
+}
+
+.task-tools .file-picker {
+    border: 1px solid var(--border-color);
+    background: var(--surface);
+    color: var(--text-main);
+    overflow-wrap: anywhere;
+}
+
+.task-tools .file-picker:focus-within {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+#importTasksInput:focus-visible+.file-picker {
+    outline: 2px solid var(--primary);
+}
+
+/* Mobile layout */
+@media (max-width: 576px) {
+    .task-tools {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .task-tools .btn,
+    .task-tools .file-picker {
+        min-height: 46px;
+    }
+}
